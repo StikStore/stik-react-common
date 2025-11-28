@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
+  "exports": "./dist/main.js",
+  "module": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
