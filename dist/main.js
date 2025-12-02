@@ -373,7 +373,7 @@ const ws = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
           "img",
           {
             src: a,
-            className: "app-icon",
+            className: "app-icon-img",
             onError: (c) => {
               c.currentTarget.src = "/default-icon.png";
             }
@@ -6887,7 +6887,7 @@ const uf = ({
     "img",
     {
       src: e.iconURL,
-      className: "app-icon",
+      className: "app-icon-img",
       onError: (r) => {
         r.currentTarget.src = "/default-icon.png";
       }
@@ -9762,7 +9762,7 @@ const Lo = er([se(), Dt({
         /* @__PURE__ */ Z("h2", { style: { margin: 0 }, children: "App Icon" }),
         /* @__PURE__ */ Z("p", { className: "app-subtext", children: "Icons will be masked to an iOS style shape." })
       ] }),
-      /* @__PURE__ */ Z("img", { src: s, className: "app-icon" }),
+      /* @__PURE__ */ Z("img", { src: s, className: "app-icon-img" }),
       /* @__PURE__ */ Y("div", { style: { width: "100%" }, children: [
         /* @__PURE__ */ Z(
           "button",

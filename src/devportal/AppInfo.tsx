@@ -58,7 +58,7 @@ export const AppInfo = () => {
             Icons will be masked to an iOS style shape.
           </p>
         </div>
-        <img src={iconUrl} className={"app-icon"} />
+        <img src={iconUrl} className={"app-icon-img"} />
         <div style={{ width: "100%" }}>
           <button
             onClick={() => {

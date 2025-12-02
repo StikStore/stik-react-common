@@ -94,7 +94,7 @@ export const AltStoreAppTitle = ({ app }: { app: AltStoreApp }) => {
     <div className="app-title-container app-title-container-inline">
       <img
         src={app.iconURL}
-        className="app-icon"
+        className="app-icon-img"
         onError={(e) => {
           e.currentTarget.src = "/default-icon.png";
         }}

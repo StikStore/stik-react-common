@@ -37,7 +37,7 @@ export const AppTitle = ({
     >
       <img
         src={iconUrl}
-        className="app-icon"
+        className="app-icon-img"
         onError={(e) => {
           e.currentTarget.src = "/default-icon.png";
         }}
