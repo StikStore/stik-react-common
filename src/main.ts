@@ -16,3 +16,5 @@ export { AppVersions } from "./devportal/AppVersions";
 export { AppScreenshots } from "./devportal/AppScreenshots";
 export { AppManagement } from "./devportal/AppManagement";
 export { PromptProvider, usePrompt } from "./utils/PromptContext";
+export { Dropdown } from "./components/Dropdown";
+export { DropdownOption } from "./components/DropdownOption";

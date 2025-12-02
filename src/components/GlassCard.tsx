@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+import styles from "./glass.module.css";
 import type { ReactNode } from "react";
 
 type GlassCardProps = {

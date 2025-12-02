@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { Dropdown } from "./Dropdown";
 import "./EditCard.css";
+import { DropdownOption } from "./DropdownOption";
 
 type FieldBase<T extends {}> = {
   label: string;
@@ -30,6 +33,8 @@ export const FieldInput = <T extends {}>({
   value: string | number | null;
   updateValue: (value: string) => void;
 }) => {
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
   let elem: React.ReactNode;
   if (field.type === "text") {
     elem = (
@@ -57,18 +62,28 @@ export const FieldInput = <T extends {}>({
     );
   } else if (field.type === "dropdown") {
     elem = (
-      <select
+      <Dropdown
         id={String(field.id)}
-        required={field.required}
-        onChange={(e) => updateValue(e.target.value)}
-        value={value ? String(value) : field.defaultValue}
+        selectedLabel={
+          (value
+            ? field.options.find((option) => option.value === value)?.label
+            : field.defaultValue) || "Select an option"
+        }
+        open={dropdownOpen}
+        setOpen={setDropdownOpen}
       >
         {field.options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
+          <DropdownOption
+            key={option.value}
+            value={option.value}
+            isSelected={value === option.value}
+            label={option.label}
+            onClick={() => {
+              updateValue(option.value);
+            }}
+          />
         ))}
-      </select>
+      </Dropdown>
     );
   } else {
     return null;
