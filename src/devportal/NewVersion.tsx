@@ -22,6 +22,7 @@ const defaultVersion: Omit<Tables<"versions">, "id" | "app_id"> = {
   download_url: "",
   version: "",
   checksum: null,
+  status: "accepted",
 };
 
 export const NewVersion = () => {

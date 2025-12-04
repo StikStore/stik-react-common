@@ -14,6 +14,82 @@ export type Database = {
   }
   public: {
     Tables: {
+      approved_apps: {
+        Row: {
+          app_id: number
+          bundle_identifier: string
+          category: Database["public"]["Enums"]["Category"]
+          created_at: string
+          description: string | null
+          entitlements: string[]
+          icon_path: string | null
+          ipad_screenshots: Json
+          iphone_screenshots: Json
+          latest_version: number
+          name: string
+          owner: string
+          privacy: Json
+          review_id: number
+          subtitle: string | null
+        }
+        Insert: {
+          app_id?: number
+          bundle_identifier: string
+          category?: Database["public"]["Enums"]["Category"]
+          created_at: string
+          description?: string | null
+          entitlements: string[]
+          icon_path?: string | null
+          ipad_screenshots?: Json
+          iphone_screenshots?: Json
+          latest_version: number
+          name: string
+          owner: string
+          privacy: Json
+          review_id: number
+          subtitle?: string | null
+        }
+        Update: {
+          app_id?: number
+          bundle_identifier?: string
+          category?: Database["public"]["Enums"]["Category"]
+          created_at?: string
+          description?: string | null
+          entitlements?: string[]
+          icon_path?: string | null
+          ipad_screenshots?: Json
+          iphone_screenshots?: Json
+          latest_version?: number
+          name?: string
+          owner?: string
+          privacy?: Json
+          review_id?: number
+          subtitle?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "approved_apps_app_id_fkey"
+            columns: ["app_id"]
+            isOneToOne: true
+            referencedRelation: "apps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approved_apps_latest_version_fkey"
+            columns: ["latest_version"]
+            isOneToOne: false
+            referencedRelation: "versions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approved_apps_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: false
+            referencedRelation: "reviews"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       apps: {
         Row: {
           bundle_identifier: string
@@ -62,6 +138,69 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          roles: Database["public"]["Enums"]["user_role"][] | null
+          user_id: string
+        }
+        Insert: {
+          roles?: Database["public"]["Enums"]["user_role"][] | null
+          user_id: string
+        }
+        Update: {
+          roles?: Database["public"]["Enums"]["user_role"][] | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          app_id: number
+          created_at: string
+          id: number
+          message: string | null
+          reviewed_at: string | null
+          reviewer_id: string
+          status: Database["public"]["Enums"]["review_status"]
+          version_id: number
+        }
+        Insert: {
+          app_id: number
+          created_at?: string
+          id?: number
+          message?: string | null
+          reviewed_at?: string | null
+          reviewer_id: string
+          status?: Database["public"]["Enums"]["review_status"]
+          version_id: number
+        }
+        Update: {
+          app_id?: number
+          created_at?: string
+          id?: number
+          message?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string
+          status?: Database["public"]["Enums"]["review_status"]
+          version_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_app_id_fkey"
+            columns: ["app_id"]
+            isOneToOne: false
+            referencedRelation: "apps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_version_id_fkey"
+            columns: ["version_id"]
+            isOneToOne: false
+            referencedRelation: "versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       versions: {
         Row: {
           app_id: number
@@ -71,6 +210,7 @@ export type Database = {
           created_at: string
           download_url: string
           id: number
+          status: Database["public"]["Enums"]["version_status"]
           version: string
         }
         Insert: {
@@ -81,6 +221,7 @@ export type Database = {
           created_at: string
           download_url: string
           id?: number
+          status?: Database["public"]["Enums"]["version_status"]
           version: string
         }
         Update: {
@@ -91,6 +232,7 @@ export type Database = {
           created_at?: string
           download_url?: string
           id?: number
+          status?: Database["public"]["Enums"]["version_status"]
           version?: string
         }
         Relationships: [
@@ -132,6 +274,9 @@ export type Database = {
         | "photo-video"
         | "utilities"
         | "other"
+      review_status: "pending" | "accepted" | "rejected"
+      user_role: "reviewer"
+      version_status: "draft" | "pending" | "accepted" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -269,6 +414,9 @@ export const Constants = {
         "utilities",
         "other",
       ],
+      review_status: ["pending", "accepted", "rejected"],
+      user_role: ["reviewer"],
+      version_status: ["draft", "pending", "accepted", "rejected"],
     },
   },
 } as const

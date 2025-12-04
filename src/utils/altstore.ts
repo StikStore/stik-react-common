@@ -111,6 +111,7 @@ export function importAltstoreApp(
       changelog: version.localizedDescription || "",
       created_at: version.date,
       checksum: null,
+      status: "pending",
     });
   }
 

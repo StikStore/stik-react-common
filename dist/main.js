@@ -6818,7 +6818,8 @@ function $a(e, r = null) {
     download_url: "",
     changelog: null,
     created_at: (/* @__PURE__ */ new Date()).toISOString(),
-    checksum: r
+    checksum: r,
+    status: "pending"
   };
 }
 async function ff(e, r) {
@@ -6896,7 +6897,8 @@ function df(e) {
       download_url: i.downloadURL,
       changelog: i.localizedDescription || "",
       created_at: i.date,
-      checksum: null
+      checksum: null,
+      status: "pending"
     });
   return [t, n];
 }
@@ -9643,7 +9645,8 @@ const Do = rr([se(), Mt({
   created_at: (/* @__PURE__ */ new Date()).toISOString(),
   download_url: "",
   version: "",
-  checksum: null
+  checksum: null,
+  status: "accepted"
 }, K0 = () => {
   const { id: e } = ht(), { apps: r, session: t } = Oe(), n = Ye(), i = Rt(null), o = r.find((s) => s.id === Number(e));
   return o ? /* @__PURE__ */ X("div", { className: "developer-container app-page-container", children: [
