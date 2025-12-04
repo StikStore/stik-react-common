@@ -111,7 +111,35 @@ export const Version = () => {
               {version.status}
             </strong>
           </p>
-          {}
+          {version.status === "draft" && (
+            <>
+              <p>
+                This version will not be visible to users of your app until it
+                is approved.
+              </p>
+              <button
+                className="primary"
+                onClick={async () => {
+                  showPrompt({
+                    title: "Submit Version for Review",
+                    content: `Are you sure you want to submit version ${version.version} (${version.build_version}) of ${app.name} for review? Once submitted, you will not be able to make further changes.`,
+                    options: [
+                      {
+                        text: "Submit",
+                        className: "primary",
+                        action: async () => {
+                          toast.warning("not implemented yet");
+                        },
+                      },
+                      { text: "Cancel", action: () => {}, className: "" },
+                    ],
+                  });
+                }}
+              >
+                Submit for Review
+              </button>
+            </>
+          )}
         </GlassCard>
         <GlassCard className="app-subcard management-card delete-version-card">
           <div>
