@@ -138,13 +138,7 @@ export const Version = () => {
           {
             <div>
               <p>Reviewer Feedback</p>
-              <div
-                style={{
-                  background: "rgba(255, 255, 255, 0.05)",
-                }}
-              >
-                This is a test review.
-              </div>
+              <div className="review-feedback">This is a test review.</div>
             </div>
           }
           {version.status === "draft" && (

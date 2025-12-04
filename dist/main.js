@@ -9826,15 +9826,7 @@ const Do = rr([se(), Vt({
         ] }),
         /* @__PURE__ */ q("div", { children: [
           /* @__PURE__ */ Z("p", { children: "Reviewer Feedback" }),
-          /* @__PURE__ */ Z(
-            "div",
-            {
-              style: {
-                background: "rgba(255, 255, 255, 0.05)"
-              },
-              children: "This is a test review."
-            }
-          )
+          /* @__PURE__ */ Z("div", { className: "review-feedback", children: "This is a test review." })
         ] }),
         a.status === "draft" && /* @__PURE__ */ Z(
           "button",
