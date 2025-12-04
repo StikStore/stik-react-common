@@ -161,32 +161,47 @@ export const Version = () => {
                       text: "Submit",
                       className: "primary",
                       action: async () => {
-                        const { data, error } =
-                          await getSupabase().functions.invoke(
-                            "submit-version",
+                        const { error } = await getSupabase()
+                          .from("reviews")
+                          .insert([
                             {
-                              body: {
-                                versionId: version.id,
-                                appId: app.id,
-                              },
-                            }
-                          );
+                              app_id: app.id,
+                              version_id: version.id,
+                            },
+                          ]);
+
                         if (error) {
                           console.error(error);
                           toast.error(
                             beautifyPostgrestError(error, "version submission")
                           );
-                        } else if (!data.success) {
-                          toast.error(data.message || "Submission failed");
-                        } else {
-                          toast.success(
-                            "Version submitted for review successfully"
-                          );
-                          navigate(
-                            `/developers/app/${app.id}/version/${version.id}`
-                          );
-                          reloadApps();
+                          return;
                         }
+
+                        const { data: _, error: updateError } =
+                          await getSupabase()
+                            .from("versions")
+                            .update({ status: "pending" })
+                            .eq("id", version.id);
+
+                        if (updateError) {
+                          console.error(updateError);
+                          toast.error(
+                            beautifyPostgrestError(
+                              updateError,
+                              "version submission"
+                            )
+                          );
+                          return;
+                        }
+
+                        toast.success(
+                          "Version submitted for review successfully"
+                        );
+                        navigate(
+                          `/developers/app/${app.id}/version/${version.id}`
+                        );
+                        reloadApps();
                       },
                     },
                     { text: "Cancel", action: () => {}, className: "" },
