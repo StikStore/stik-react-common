@@ -143,7 +143,7 @@ export const Version = () => {
               </div>
             </div>
           )}
-          {version.status === "draft" && (
+          {version.status === "pending" && (
             <button
               className="primary"
               disabled={
