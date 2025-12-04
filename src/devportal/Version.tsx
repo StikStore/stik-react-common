@@ -18,6 +18,7 @@ export const Version = () => {
   const app = apps.find((app) => app.id === Number(id));
   const [loading, setLoading] = useState(true);
   const [version, setVersion] = useState<Tables<"versions"> | null>(null);
+  const [_, setReview] = useState<Tables<"reviews"> | null>(null);
   const { showPrompt } = usePrompt();
   const navigate = useNavigate();
 
@@ -40,7 +41,25 @@ export const Version = () => {
         setVersion(data);
       }
 
-      if (data?.status !== "draft") {
+      if (
+        data !== null &&
+        data?.status !== "draft" &&
+        data?.status !== "pending"
+      ) {
+        const { data: reviewData, error: reviewError } = await getSupabase()
+          .from("reviews")
+          .select("*")
+          .eq("version_id", data.id)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .single();
+
+        if (reviewError) {
+          console.error(reviewError);
+          toast.error(beautifyPostgrestError(reviewError, "review"));
+        } else {
+          setReview(reviewData);
+        }
       }
     };
 
@@ -116,6 +135,18 @@ export const Version = () => {
             </p>
             <p className="app-subtext">{statusMessage(version.status)}</p>
           </div>
+          {
+            <div>
+              <p>Reviewer Feedback</p>
+              <div
+                style={{
+                  background: "rgba(255, 255, 255, 0.05)",
+                }}
+              >
+                This is a test review.
+              </div>
+            </div>
+          }
           {version.status === "draft" && (
             <button
               className="primary"
@@ -211,7 +242,7 @@ function statusMessage(status: string) {
     case "accepted":
       return "This version has been approved and is live.";
     case "rejected":
-      return "This version was rejected. Please review the feedback and make necessary changes.";
+      return "This version was rejected. Please review the feedback before submitting a new version.";
     default:
       return "";
   }
