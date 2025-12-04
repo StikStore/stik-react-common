@@ -1,11 +1,11 @@
 import { jsx as Z, jsxs as q, Fragment as Vo } from "react/jsx-runtime";
-import Wo, { createContext as Ho, useState as Ee, useCallback as zt, useEffect as nt, useMemo as Vn, useRef as Pt, useContext as _s } from "react";
+import Wo, { createContext as Ho, useState as ke, useCallback as zt, useEffect as nt, useMemo as Vn, useRef as Pt, useContext as _s } from "react";
 import { createClient as gs } from "@supabase/supabase-js";
 import { toast as oe } from "sonner";
 import { useNavigate as Ye, useParams as dt, useLocation as ms, Outlet as bs } from "react-router";
 import './assets/main.css';const vs = {
   "glass-card": "_glass-card_9ryz3_1"
-}, ke = ({ children: e, className: r, style: t }) => {
+}, Ee = ({ children: e, className: r, style: t }) => {
   const n = [vs["glass-card"], r].filter(Boolean).join(" ");
   return /* @__PURE__ */ Z("div", { className: n, style: t, children: e });
 };
@@ -56,7 +56,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
   children: e,
   customOauthHandler: r
 }) => {
-  const [t, n] = Ee(!0), [i, o] = Ee(null), [s, a] = Ee([]), [c, l] = Ee(!1), u = Wo.useRef(!1), h = zt(async (x) => {
+  const [t, n] = ke(!0), [i, o] = ke(null), [s, a] = ke([]), [c, l] = ke(!1), u = Wo.useRef(!1), h = zt(async (x) => {
     const { data: d, error: g } = await ae().from("profiles").select("roles").eq("user_id", x.user.id).single();
     g ? (console.error("Error checking reviewer status:", g), l(!1)) : l(d?.roles?.includes("reviewer") || !1);
   }, []);
@@ -192,7 +192,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
 }, xs = ({
   customOauthHandler: e
 }) => {
-  const [r, t] = Ee(!0), [n, i] = Ee(""), [o, s] = Ee(""), [a, c] = Ee(""), l = zt(async () => {
+  const [r, t] = ke(!0), [n, i] = ke(""), [o, s] = ke(""), [a, c] = ke(""), l = zt(async () => {
     let u;
     if (r) {
       if (!a || a.trim().length === 0) {
@@ -232,7 +232,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
       error: (h) => (console.error(h), ws(h))
     });
   }, [r, n, o, a]);
-  return /* @__PURE__ */ Z("div", { className: "page-centered-container", children: /* @__PURE__ */ Z("div", { className: "page-centered-inner", children: /* @__PURE__ */ Z(ke, { className: "dev-login-card", children: /* @__PURE__ */ q("div", { className: "login", children: [
+  return /* @__PURE__ */ Z("div", { className: "page-centered-container", children: /* @__PURE__ */ Z("div", { className: "page-centered-inner", children: /* @__PURE__ */ Z(Ee, { className: "dev-login-card", children: /* @__PURE__ */ q("div", { className: "login", children: [
     /* @__PURE__ */ q("div", { className: "login-header", children: [
       /* @__PURE__ */ q("h1", { className: "dev-login-title", children: [
         r ? "Sign up for" : "Login to",
@@ -331,7 +331,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
       /* @__PURE__ */ Z("h1", { children: "Account Settings" }),
       /* @__PURE__ */ Z("h4", { className: "text-link", onClick: () => r("/developers"), children: "Back to Dashboard" })
     ] }),
-    /* @__PURE__ */ q(ke, { children: [
+    /* @__PURE__ */ q(Ee, { children: [
       /* @__PURE__ */ Z("h3", { children: "Profile" }),
       /* @__PURE__ */ q("p", { children: [
         "Display Name: ",
@@ -411,7 +411,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
   return /* @__PURE__ */ q("div", { className: "developer-container", children: [
     /* @__PURE__ */ Z("h1", { children: "StikStore Developer Portal" }),
     /* @__PURE__ */ q("section", { className: "developer-page", children: [
-      /* @__PURE__ */ q(ke, { children: [
+      /* @__PURE__ */ q(Ee, { children: [
         /* @__PURE__ */ q("h3", { children: [
           "Welcome to the Dashboard, ",
           e.user.user_metadata.display_name,
@@ -430,7 +430,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
           /* @__PURE__ */ Z("button", { onClick: () => ae().auth.signOut(), children: "Log Out" })
         ] })
       ] }),
-      /* @__PURE__ */ q(ke, { children: [
+      /* @__PURE__ */ q(Ee, { children: [
         /* @__PURE__ */ Z("h3", { children: "Uploaded Apps" }),
         /* @__PURE__ */ Z("ul", { style: { listStyleType: "none", padding: 0, margin: 0 }, children: r.map((n) => /* @__PURE__ */ Z(
           "li",
@@ -548,7 +548,7 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
   updateValue: r,
   value: t
 }) => {
-  const [n, i] = Ee(!1);
+  const [n, i] = ke(!1);
   let o;
   if (e.type === "text")
     o = /* @__PURE__ */ Z(
@@ -661,10 +661,10 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
   label: t,
   style: n
 }) => {
-  const [i, o] = Ee(e);
+  const [i, o] = ke(e);
   return nt(() => {
     o(e);
-  }, [e]), /* @__PURE__ */ Z(ke, { style: n, children: /* @__PURE__ */ q("form", { className: "edit-app-card", children: [
+  }, [e]), /* @__PURE__ */ Z(Ee, { style: n, children: /* @__PURE__ */ q("form", { className: "edit-app-card", children: [
     /* @__PURE__ */ q("div", { className: "edit-app-title", children: [
       /* @__PURE__ */ Z("h2", { children: t || "App Metadata" }),
       /* @__PURE__ */ q("p", { style: { color: "var(--label-secondary)" }, children: [
@@ -6932,8 +6932,8 @@ const _f = ({
   source: e,
   cancel: r
 }) => {
-  const [t, n] = Ee([]), { createApp: i, session: o, reloadApps: s } = Oe(), a = Ye();
-  return /* @__PURE__ */ Z("div", { className: "prompt-modal", children: /* @__PURE__ */ q(ke, { className: "altstore-prompt", children: [
+  const [t, n] = ke([]), { createApp: i, session: o, reloadApps: s } = Oe(), a = Ye();
+  return /* @__PURE__ */ Z("div", { className: "prompt-modal", children: /* @__PURE__ */ q(Ee, { className: "altstore-prompt", children: [
     /* @__PURE__ */ q("h2", { children: [
       "Select apps to import from ",
       e.name ?? "this altstore source"
@@ -9434,7 +9434,7 @@ const Do = rr([se(), Vt({
   entitlements: [],
   privacy: []
 }, K0 = () => {
-  const { session: e, createApp: r, reloadApps: t } = Oe(), n = Ye(), i = Pt(null), o = Pt(null), [s, a] = Ee(null);
+  const { session: e, createApp: r, reloadApps: t } = Oe(), n = Ye(), i = Pt(null), o = Pt(null), [s, a] = ke(null);
   return /* @__PURE__ */ q("div", { className: "developer-container", children: [
     /* @__PURE__ */ Z("h1", { style: { marginBottom: 0 }, children: "Create New App" }),
     /* @__PURE__ */ Z(
@@ -9447,7 +9447,7 @@ const Do = rr([se(), Vt({
       }
     ),
     /* @__PURE__ */ q("section", { className: "developer-page", children: [
-      /* @__PURE__ */ q(ke, { className: "import-ipa", children: [
+      /* @__PURE__ */ q(Ee, { className: "import-ipa", children: [
         /* @__PURE__ */ q("div", { children: [
           /* @__PURE__ */ Z("h2", { children: "Import App" }),
           /* @__PURE__ */ Z("p", { style: { color: "var(--label-secondary)" }, children: "Import your app from an existing .ipa file or AltStore source" })
@@ -9593,10 +9593,10 @@ const Do = rr([se(), Vt({
   save: r,
   titleOverride: t
 }) => {
-  const [n, i] = Ee(e);
+  const [n, i] = ke(e);
   return nt(() => {
     i(e);
-  }, [e]), /* @__PURE__ */ Z(ke, { children: /* @__PURE__ */ q("form", { className: "edit-app-card", children: [
+  }, [e]), /* @__PURE__ */ Z(Ee, { children: /* @__PURE__ */ q("form", { className: "edit-app-card", children: [
     /* @__PURE__ */ q("div", { className: "edit-app-title", children: [
       /* @__PURE__ */ Z("h2", { children: t ?? "Version Metadata" }),
       /* @__PURE__ */ q("p", { style: { color: "var(--label-secondary)" }, children: [
@@ -9661,7 +9661,7 @@ const Do = rr([se(), Vt({
       }
     ),
     /* @__PURE__ */ q("section", { className: "developer-page", children: [
-      /* @__PURE__ */ q(ke, { className: "import-ipa", children: [
+      /* @__PURE__ */ q(Ee, { className: "import-ipa", children: [
         /* @__PURE__ */ q("div", { children: [
           /* @__PURE__ */ Z("h2", { children: "Import Version" }),
           /* @__PURE__ */ Z("p", { style: { color: "var(--label-secondary)" }, children: "Import version data directly from an IPA file" })
@@ -9724,7 +9724,7 @@ const Do = rr([se(), Vt({
 }, us = Ho(void 0), Q0 = ({
   children: e
 }) => {
-  const [r, t] = Ee(
+  const [r, t] = ke(
     null
   ), n = (o) => {
     t(o);
@@ -9733,7 +9733,7 @@ const Do = rr([se(), Vt({
   };
   return /* @__PURE__ */ q(us.Provider, { value: { showPrompt: n, hidePrompt: i }, children: [
     e,
-    r && /* @__PURE__ */ Z("div", { className: "prompt-modal", children: /* @__PURE__ */ q(ke, { children: [
+    r && /* @__PURE__ */ Z("div", { className: "prompt-modal", children: /* @__PURE__ */ q(Ee, { children: [
       /* @__PURE__ */ Z("h1", { children: r.title }),
       /* @__PURE__ */ Z("p", { children: r.content }),
       /* @__PURE__ */ Z("div", { className: "prompt-buttons", children: r.options.map((o, s) => /* @__PURE__ */ Z(
@@ -9755,7 +9755,7 @@ const Do = rr([se(), Vt({
     throw new Error("usePrompt must be used within a PromptProvider");
   return e;
 }, e_ = () => {
-  const { id: e, versionId: r } = dt(), { apps: t, reloadApps: n } = Oe(), i = t.find((h) => h.id === Number(e)), [o, s] = Ee(!0), [a, c] = Ee(null), { showPrompt: l } = fs(), u = Ye();
+  const { id: e, versionId: r } = dt(), { apps: t, reloadApps: n } = Oe(), i = t.find((h) => h.id === Number(e)), [o, s] = ke(!0), [a, c] = ke(null), { showPrompt: l } = fs(), u = Ye();
   return nt(() => {
     (async () => {
       if (!i) return;
@@ -9784,8 +9784,8 @@ const Do = rr([se(), Vt({
           }
         }
       ),
-      /* @__PURE__ */ q(ke, { className: "app-subcard management-card delete-version-card", children: [
-        /* @__PURE__ */ Z("div", { children: /* @__PURE__ */ Z("h2", { style: { marginBottom: "0.5rem" }, children: "Review Status" }) }),
+      /* @__PURE__ */ q(Ee, { className: "app-subcard management-card delete-version-card", children: [
+        /* @__PURE__ */ Z("div", { children: /* @__PURE__ */ Z("h2", { style: { marginBottom: "0.5rem" }, children: "Manage Version" }) }),
         /* @__PURE__ */ q("p", { style: { marginTop: 0 }, children: [
           "Current Status:",
           " ",
@@ -9827,12 +9827,6 @@ const Do = rr([se(), Vt({
               children: "Submit for Review"
             }
           )
-        ] })
-      ] }),
-      /* @__PURE__ */ q(ke, { className: "app-subcard management-card delete-version-card", children: [
-        /* @__PURE__ */ q("div", { children: [
-          /* @__PURE__ */ Z("h2", { style: { marginBottom: "0.5rem" }, children: "Delete Version" }),
-          /* @__PURE__ */ Z("p", { className: "app-subtext", children: "This action cannot be undone." })
         ] }),
         /* @__PURE__ */ Z(
           "button",
@@ -9889,7 +9883,7 @@ const B0 = [
   const e = Ye(), r = ms(), { id: t } = dt(), { apps: n } = Oe(), i = n.find((s) => s.id === Number(t)), o = r.pathname.split("/")[4] || "info";
   return i ? /* @__PURE__ */ q("div", { className: "developer-container app-page-container", children: [
     /* @__PURE__ */ Z(nr, { app: i }),
-    /* @__PURE__ */ Z(ke, { className: "tab-buttons", children: B0.map((s) => /* @__PURE__ */ Z(
+    /* @__PURE__ */ Z(Ee, { className: "tab-buttons", children: B0.map((s) => /* @__PURE__ */ Z(
       "h3",
       {
         className: "text-link" + (o === s ? " text-link-active" : ""),
@@ -9917,7 +9911,7 @@ const B0 = [
         }
       }
     ),
-    /* @__PURE__ */ q(ke, { className: "app-subcard icon-card", children: [
+    /* @__PURE__ */ q(Ee, { className: "app-subcard icon-card", children: [
       /* @__PURE__ */ q("div", { children: [
         /* @__PURE__ */ Z("h2", { style: { margin: 0 }, children: "App Icon" }),
         /* @__PURE__ */ Z("p", { className: "app-subtext", children: "Icons will be masked to an iOS style shape." })
@@ -9964,13 +9958,13 @@ const B0 = [
     ] })
   ] }) : /* @__PURE__ */ Z("div", { className: "developer-container", children: /* @__PURE__ */ Z("h1", { style: { marginBottom: 0 }, children: "App Not Found" }) });
 }, n_ = () => {
-  const { id: e } = dt(), { apps: r, reloadApps: t } = Oe(), n = r.find((c) => c.id === Number(e)), [i, o] = Ee(() => n ? n.entitlements || [] : []), [s, a] = Ee(() => n ? n.privacy || [] : []);
+  const { id: e } = dt(), { apps: r, reloadApps: t } = Oe(), n = r.find((c) => c.id === Number(e)), [i, o] = ke(() => n ? n.entitlements || [] : []), [s, a] = ke(() => n ? n.privacy || [] : []);
   return nt(() => {
     n && o(n.entitlements || []);
   }, [n?.entitlements]), nt(() => {
     n && a(n.privacy || []);
   }, [n?.privacy]), n ? /* @__PURE__ */ Z("section", { className: "developer-page", children: /* @__PURE__ */ q("div", { className: "entitlements-container", children: [
-    /* @__PURE__ */ q(ke, { className: "app-subcard entitlements-card", children: [
+    /* @__PURE__ */ q(Ee, { className: "app-subcard entitlements-card", children: [
       /* @__PURE__ */ q("div", { children: [
         /* @__PURE__ */ Z("h2", { children: "Save Changes" }),
         /* @__PURE__ */ Z("p", { className: "app-subtext", children: "Save changes to entitlements and privacy info" })
@@ -9988,7 +9982,7 @@ const B0 = [
         }
       )
     ] }),
-    /* @__PURE__ */ q(ke, { className: "app-subcard entitlements-card", children: [
+    /* @__PURE__ */ q(Ee, { className: "app-subcard entitlements-card", children: [
       /* @__PURE__ */ q("div", { children: [
         /* @__PURE__ */ Z("h2", { children: "Entitlements" }),
         /* @__PURE__ */ q("p", { className: "app-subtext", children: [
@@ -10041,7 +10035,7 @@ const B0 = [
         }
       )
     ] }),
-    /* @__PURE__ */ q(ke, { className: "app-subcard entitlements-card", children: [
+    /* @__PURE__ */ q(Ee, { className: "app-subcard entitlements-card", children: [
       /* @__PURE__ */ q("div", { children: [
         /* @__PURE__ */ Z("h2", { children: "Privacy Info" }),
         /* @__PURE__ */ Z("p", { className: "app-subtext", children: "List all usage descriptions from your Info.plist" })
@@ -10103,14 +10097,14 @@ const B0 = [
     ] })
   ] }) }) : /* @__PURE__ */ Z("div", { className: "developer-container", children: /* @__PURE__ */ Z("h1", { style: { marginBottom: 0 }, children: "App Not Found" }) });
 }, i_ = () => {
-  const { id: e } = dt(), { apps: r } = Oe(), t = Ye(), n = r.find((c) => c.id === Number(e)), [i, o] = Ee(!0), [s, a] = Ee([]);
+  const { id: e } = dt(), { apps: r } = Oe(), t = Ye(), n = r.find((c) => c.id === Number(e)), [i, o] = ke(!0), [s, a] = ke([]);
   return nt(() => {
     (async () => {
       if (!n) return;
       const { data: l, error: u } = await ae().from("versions").select("*").eq("app_id", n.id).order("created_at", { ascending: !1 });
       u ? (console.error(u), oe.error(Ce(u, "version"))) : a(l), o(!1);
     })();
-  }, [n]), n ? /* @__PURE__ */ Z("section", { className: "developer-page", children: /* @__PURE__ */ q(ke, { className: "app-subcard versions-card", children: [
+  }, [n]), n ? /* @__PURE__ */ Z("section", { className: "developer-page", children: /* @__PURE__ */ q(Ee, { className: "app-subcard versions-card", children: [
     /* @__PURE__ */ Z("h2", { children: "Versions" }),
     s.length === 0 && !i && /* @__PURE__ */ Z("p", { className: "app-subtext", children: "It seems you don't have any versions yet. Let's change that!" }),
     /* @__PURE__ */ Z("ul", { style: { listStyleType: "none", padding: 0, margin: 0 }, children: s.map((c) => /* @__PURE__ */ q(
@@ -10255,11 +10249,11 @@ const B0 = [
 }, o_ = () => {
   const { id: e } = dt(), { apps: r } = Oe(), t = r.find((n) => n.id === Number(e));
   return t ? /* @__PURE__ */ q("section", { className: "developer-page", children: [
-    /* @__PURE__ */ q(ke, { className: "app-subcard screenshots-card", children: [
+    /* @__PURE__ */ q(Ee, { className: "app-subcard screenshots-card", children: [
       /* @__PURE__ */ Z("h2", { children: "iPhone Screenshots" }),
       /* @__PURE__ */ Z("div", { className: "screenshots-container", children: /* @__PURE__ */ Z(Mo, { isIpad: !1, app: t }) })
     ] }),
-    /* @__PURE__ */ q(ke, { className: "app-subcard screenshots-card", children: [
+    /* @__PURE__ */ q(Ee, { className: "app-subcard screenshots-card", children: [
       /* @__PURE__ */ Z("h2", { children: "iPad Screenshots" }),
       /* @__PURE__ */ Z("div", { className: "screenshots-container", children: /* @__PURE__ */ Z(Mo, { isIpad: !0, app: t }) })
     ] })
@@ -10301,7 +10295,7 @@ async function D0(e, r, t) {
 }
 const a_ = () => {
   const { id: e } = dt(), { apps: r, reloadApps: t } = Oe(), n = Ye(), i = r.find((s) => s.id === Number(e)), { showPrompt: o } = fs();
-  return i ? /* @__PURE__ */ Z("section", { className: "developer-page", children: /* @__PURE__ */ q(ke, { className: "app-subcard management-card", children: [
+  return i ? /* @__PURE__ */ Z("section", { className: "developer-page", children: /* @__PURE__ */ q(Ee, { className: "app-subcard management-card", children: [
     /* @__PURE__ */ Z("h2", { style: { marginTop: 0 }, children: "Danger Zone" }),
     /* @__PURE__ */ Z(
       "button",
@@ -10341,7 +10335,7 @@ export {
   q0 as DeveloperProvider,
   As as Dropdown,
   Ss as DropdownOption,
-  ke as GlassCard,
+  Ee as GlassCard,
   K0 as NewApp,
   J0 as NewVersion,
   Q0 as PromptProvider,
