@@ -9785,11 +9785,11 @@ const Do = rr([se(), Vt({
         }
       ),
       /* @__PURE__ */ q(ke, { className: "app-subcard management-card delete-version-card", children: [
-        /* @__PURE__ */ Z("div", { children: /* @__PURE__ */ Z("h2", { children: "Review Status" }) }),
+        /* @__PURE__ */ Z("div", { children: /* @__PURE__ */ Z("h2", { style: { marginBottom: "0.5rem" }, children: "Review Status" }) }),
         /* @__PURE__ */ q("p", { children: [
           "Current Status:",
           " ",
-          /* @__PURE__ */ Z("strong", { style: { textTransform: "capitalize" }, children: a.status.charAt(0).toUpperCase() + a.status.slice(1) })
+          /* @__PURE__ */ Z("strong", { style: { textTransform: "capitalize" }, children: a.status })
         ] })
       ] }),
       /* @__PURE__ */ q(ke, { className: "app-subcard management-card delete-version-card", children: [

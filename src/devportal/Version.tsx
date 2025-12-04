@@ -98,14 +98,15 @@ export const Version = () => {
         />
         <GlassCard className="app-subcard management-card delete-version-card">
           <div>
-            <h2>Review Status</h2>
+            <h2 style={{ marginBottom: "0.5rem" }}>Review Status</h2>
           </div>
           <p>
             Current Status:{" "}
             <strong style={{ textTransform: "capitalize" }}>
-              {version.status.charAt(0).toUpperCase() + version.status.slice(1)}
+              {version.status}
             </strong>
           </p>
+          {}
         </GlassCard>
         <GlassCard className="app-subcard management-card delete-version-card">
           <div>
