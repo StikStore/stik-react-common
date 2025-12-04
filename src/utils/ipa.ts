@@ -181,7 +181,7 @@ function versionFromInfoPlist(
     changelog: null,
     created_at: new Date().toISOString(),
     checksum,
-    status: "pending",
+    status: "draft",
   };
 }
 
