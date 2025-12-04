@@ -9832,7 +9832,7 @@ const Do = rr([se(), Vt({
           "button",
           {
             className: "danger",
-            style: { marginTop: "0.5rem" },
+            style: { marginTop: "1rem" },
             onClick: async () => {
               l({
                 title: "Delete Version",

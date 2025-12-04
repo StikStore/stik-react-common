@@ -149,7 +149,7 @@ export const Version = () => {
 
           <button
             className="danger"
-            style={{ marginTop: "0.5rem" }}
+            style={{ marginTop: "1rem" }}
             onClick={async () => {
               showPrompt({
                 title: "Delete Version",
