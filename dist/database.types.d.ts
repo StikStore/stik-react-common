@@ -133,15 +133,15 @@ export type Database = {
             };
             profiles: {
                 Row: {
-                    roles: Database["public"]["Enums"]["user_role"][] | null;
+                    roles: Database["public"]["Enums"]["user_role"][];
                     user_id: string;
                 };
                 Insert: {
-                    roles?: Database["public"]["Enums"]["user_role"][] | null;
+                    roles: Database["public"]["Enums"]["user_role"][];
                     user_id: string;
                 };
                 Update: {
-                    roles?: Database["public"]["Enums"]["user_role"][] | null;
+                    roles?: Database["public"]["Enums"]["user_role"][];
                     user_id?: string;
                 };
                 Relationships: [];
@@ -153,7 +153,7 @@ export type Database = {
                     id: number;
                     message: string | null;
                     reviewed_at: string | null;
-                    reviewer_id: string;
+                    reviewer_id: string | null;
                     status: Database["public"]["Enums"]["review_status"];
                     version_id: number;
                 };
@@ -163,7 +163,7 @@ export type Database = {
                     id?: number;
                     message?: string | null;
                     reviewed_at?: string | null;
-                    reviewer_id: string;
+                    reviewer_id?: string | null;
                     status?: Database["public"]["Enums"]["review_status"];
                     version_id: number;
                 };
@@ -173,7 +173,7 @@ export type Database = {
                     id?: number;
                     message?: string | null;
                     reviewed_at?: string | null;
-                    reviewer_id?: string;
+                    reviewer_id?: string | null;
                     status?: Database["public"]["Enums"]["review_status"];
                     version_id?: number;
                 };

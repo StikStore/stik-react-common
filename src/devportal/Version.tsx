@@ -161,7 +161,32 @@ export const Version = () => {
                       text: "Submit",
                       className: "primary",
                       action: async () => {
-                        toast.warning("not implemented yet");
+                        const { data, error } =
+                          await getSupabase().functions.invoke(
+                            "submit-version",
+                            {
+                              body: {
+                                versionId: version.id,
+                                appId: app.id,
+                              },
+                            }
+                          );
+                        if (error) {
+                          console.error(error);
+                          toast.error(
+                            beautifyPostgrestError(error, "version submission")
+                          );
+                        } else if (!data.success) {
+                          toast.error(data.message || "Submission failed");
+                        } else {
+                          toast.success(
+                            "Version submitted for review successfully"
+                          );
+                          navigate(
+                            `/developers/app/${app.id}/version/${version.id}`
+                          );
+                          reloadApps();
+                        }
                       },
                     },
                     { text: "Cancel", action: () => {}, className: "" },
