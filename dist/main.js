@@ -10395,6 +10395,7 @@ export {
   s_ as AppManagement,
   i_ as AppPermissions,
   a_ as AppScreenshots,
+  nr as AppTitle,
   o_ as AppVersions,
   K0 as Developer,
   X0 as DeveloperProvider,

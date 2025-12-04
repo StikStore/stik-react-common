@@ -18,3 +18,4 @@ export { AppManagement } from './devportal/AppManagement';
 export { PromptProvider, usePrompt } from './utils/PromptContext';
 export { Dropdown } from './components/Dropdown';
 export { DropdownOption } from './components/DropdownOption';
+export { AppTitle } from './components/AppTitle';
