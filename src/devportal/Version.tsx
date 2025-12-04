@@ -165,7 +165,7 @@ function statusColor(status: string) {
       return "inherit";
     case "pending":
       return "orange";
-    case "approved":
+    case "accepted":
       return "var(--success)";
     case "rejected":
       return "var(--danger)";

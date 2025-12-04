@@ -9843,7 +9843,7 @@ function U0(e) {
       return "inherit";
     case "pending":
       return "orange";
-    case "approved":
+    case "accepted":
       return "var(--success)";
     case "rejected":
       return "var(--danger)";
