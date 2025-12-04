@@ -18,9 +18,10 @@ type DropdownField = {
     type: "dropdown";
 };
 export type Field<T extends {}> = FieldBase<T> & (TextField | DropdownField);
-export declare const FieldInput: <T extends {}>({ field, updateValue, value, }: {
+export declare const FieldInput: <T extends {}>({ field, updateValue, value, disabled, }: {
     field: Field<T>;
     value: string | number | null;
     updateValue: (value: string) => void;
+    disabled?: boolean;
 }) => import("react/jsx-runtime").JSX.Element | null;
 export {};

@@ -51,10 +51,12 @@ export const EditVersionCard = ({
   version,
   save,
   titleOverride,
+  disabled,
 }: {
   version: Omit<Tables<"versions">, "id" | "app_id">;
   save: (version: Omit<Tables<"versions">, "id" | "app_id">) => void;
   titleOverride?: string;
+  disabled?: boolean;
 }) => {
   const [versionData, setVersionData] =
     useState<Omit<Tables<"versions">, "id" | "app_id">>(version);
@@ -76,6 +78,7 @@ export const EditVersionCard = ({
         {fields.map((field) => {
           return (
             <FieldInput
+              disabled={disabled}
               key={field.id}
               field={field}
               updateValue={(value) => {
@@ -97,7 +100,8 @@ export const EditVersionCard = ({
               !versionData.version ||
               !versionData.build_version ||
               !versionData.download_url ||
-              !versionData.checksum
+              !versionData.checksum ||
+              disabled
             ) {
               return toast.error("Please fill in all required fields");
             }
@@ -116,7 +120,8 @@ export const EditVersionCard = ({
             !versionData.build_version ||
             !versionData.download_url ||
             !versionData.checksum ||
-            versionData === version
+            versionData === version ||
+            disabled
           }
         >
           Save Version

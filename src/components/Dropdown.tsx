@@ -10,6 +10,7 @@ type DropdownProps = {
   ariaLabelledby?: string;
   selectedLabel: string;
   id?: string;
+  disabled?: boolean;
 };
 
 export const Dropdown = ({
@@ -21,6 +22,7 @@ export const Dropdown = ({
   setOpen,
   id,
   selectedLabel,
+  disabled,
 }: DropdownProps) => {
   useEffect(() => {
     if (!open) return;
@@ -54,19 +56,26 @@ export const Dropdown = ({
     styles["custom-dropdown"],
     className,
     open ? styles["open"] : null,
+    disabled ? styles["disabled"] : null,
   ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <div className={classes} ref={dropdownRef} style={style} id={id}>
+    <div
+      className={classes}
+      ref={dropdownRef}
+      style={style}
+      id={id}
+      aria-disabled={disabled}
+    >
       <button
         type="button"
         className={styles["dropdown-toggle"]}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-labelledby={ariaLabelledby}
-        onClick={() => setOpen((open) => !open)}
+        onClick={() => !disabled && setOpen((open) => !open)}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown" || event.key === "Enter") {
             event.preventDefault();

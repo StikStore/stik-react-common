@@ -8,6 +8,7 @@ type DropdownProps = {
     ariaLabelledby?: string;
     selectedLabel: string;
     id?: string;
+    disabled?: boolean;
 };
-export declare const Dropdown: ({ children, className, style, ariaLabelledby, open, setOpen, id, selectedLabel, }: DropdownProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Dropdown: ({ children, className, style, ariaLabelledby, open, setOpen, id, selectedLabel, disabled, }: DropdownProps) => import("react/jsx-runtime").JSX.Element;
 export {};

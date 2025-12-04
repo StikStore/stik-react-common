@@ -39,6 +39,9 @@ export const Version = () => {
       } else {
         setVersion(data);
       }
+
+      if (data?.status !== "draft") {
+      }
     };
 
     void fetchVersion();
@@ -79,6 +82,7 @@ export const Version = () => {
       />
       <section className="developer-page">
         <EditVersionCard
+          disabled={version.status !== "draft"}
           version={version}
           save={async (newVersion) => {
             const res = await getSupabase()
@@ -111,40 +115,35 @@ export const Version = () => {
               {version.status}
             </strong>
           </p>
+          <p className="app-subtext">{statusMessage(version.status)}</p>
           {version.status === "draft" && (
-            <>
-              <p className="app-subtext">
-                This version will not be visible to users of your app until it
-                is approved.
-              </p>
-              <button
-                className="primary"
-                disabled={
-                  !version.version ||
-                  !version.build_version ||
-                  !version.download_url ||
-                  !version.checksum
-                }
-                onClick={async () => {
-                  showPrompt({
-                    title: "Submit Version for Review",
-                    content: `Are you sure you want to submit version ${version.version} (${version.build_version}) of ${app.name} for review? Once submitted, you will not be able to make further changes.`,
-                    options: [
-                      {
-                        text: "Submit",
-                        className: "primary",
-                        action: async () => {
-                          toast.warning("not implemented yet");
-                        },
+            <button
+              className="primary"
+              disabled={
+                !version.version ||
+                !version.build_version ||
+                !version.download_url ||
+                !version.checksum
+              }
+              onClick={async () => {
+                showPrompt({
+                  title: "Submit Version for Review",
+                  content: `Are you sure you want to submit version ${version.version} (${version.build_version}) of ${app.name} for review? Once submitted, you will not be able to make further changes.`,
+                  options: [
+                    {
+                      text: "Submit",
+                      className: "primary",
+                      action: async () => {
+                        toast.warning("not implemented yet");
                       },
-                      { text: "Cancel", action: () => {}, className: "" },
-                    ],
-                  });
-                }}
-              >
-                Submit for Review
-              </button>
-            </>
+                    },
+                    { text: "Cancel", action: () => {}, className: "" },
+                  ],
+                });
+              }}
+            >
+              Submit for Review
+            </button>
           )}
 
           <button
@@ -201,5 +200,20 @@ function statusColor(status: string) {
       return "var(--danger)";
     default:
       return "inherit";
+  }
+}
+
+function statusMessage(status: string) {
+  switch (status) {
+    case "draft":
+      return "This version will not be visible to users of your app until it is approved.";
+    case "pending":
+      return "This version is currently under review.";
+    case "accepted":
+      return "This version has been approved and is live.";
+    case "rejected":
+      return "This version was rejected. Please review the feedback and make necessary changes.";
+    default:
+      return "";
   }
 }

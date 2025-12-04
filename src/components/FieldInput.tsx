@@ -28,10 +28,12 @@ export const FieldInput = <T extends {}>({
   field,
   updateValue,
   value,
+  disabled,
 }: {
   field: Field<T>;
   value: string | number | null;
   updateValue: (value: string) => void;
+  disabled?: boolean;
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
@@ -47,6 +49,7 @@ export const FieldInput = <T extends {}>({
         onChange={(e) => {
           updateValue(e.target.value);
         }}
+        disabled={disabled}
       />
     );
   } else if (field.type === "textarea") {
@@ -58,6 +61,7 @@ export const FieldInput = <T extends {}>({
         required={field.required}
         onChange={(e) => updateValue(e.target.value)}
         style={{ minWidth: "100%", minHeight: "80px" }}
+        disabled={disabled}
       />
     );
   } else if (field.type === "dropdown") {
@@ -71,6 +75,7 @@ export const FieldInput = <T extends {}>({
         }
         open={dropdownOpen}
         setOpen={setDropdownOpen}
+        disabled={disabled}
       >
         {field.options.map((option) => (
           <DropdownOption
