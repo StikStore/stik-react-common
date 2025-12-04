@@ -4,6 +4,7 @@ import { DBApp } from '../types';
 type DeveloperContextType = {
     session: Session;
     apps: DBApp[];
+    isReviewer: boolean;
     createApp: (app: Omit<DBApp, "id">) => Promise<PostgrestSingleResponse<DBApp> | undefined>;
     reloadApps: () => void;
     uploadIcon: (file: File, app: DBApp) => Promise<void>;

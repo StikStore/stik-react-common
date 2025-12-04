@@ -23,6 +23,7 @@ import type { DBApp, Screenshot } from "../types";
 type DeveloperContextType = {
   session: Session;
   apps: DBApp[];
+  isReviewer: boolean;
   createApp: (
     app: Omit<DBApp, "id">
   ) => Promise<PostgrestSingleResponse<DBApp> | undefined>;
@@ -46,10 +47,26 @@ export const DeveloperProvider = ({
   children: ReactNode;
   customOauthHandler?: (provider: Provider) => void;
 }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [session, setSession] = useState<Session | null>(null);
   const [apps, setApps] = useState<DBApp[]>([]);
+  const [isReviewer, setIsReviewer] = useState<boolean>(false);
   const loadedAppsRef = React.useRef(false);
+
+  const checkIfReviewer = useCallback(async (session: Session) => {
+    const { data, error } = await getSupabase()
+      .from("profiles")
+      .select("roles")
+      .eq("user_id", session.user.id)
+      .single();
+
+    if (error) {
+      console.error("Error checking reviewer status:", error);
+      setIsReviewer(false);
+    } else {
+      console.log(data);
+    }
+  }, []);
 
   useEffect(() => {
     getSupabase()
@@ -57,6 +74,9 @@ export const DeveloperProvider = ({
       .then(({ data: { session } }) => {
         setSession(session);
         setLoading(false);
+        if (session) {
+          void checkIfReviewer(session);
+        }
       });
 
     const {
@@ -64,6 +84,9 @@ export const DeveloperProvider = ({
     } = getSupabase().auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setLoading(false);
+      if (session) {
+        void checkIfReviewer(session);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -305,6 +328,7 @@ export const DeveloperProvider = ({
         reloadApps: loadApps,
         uploadIcon,
         uploadScreenshot,
+        isReviewer,
       }}
     >
       {children}
