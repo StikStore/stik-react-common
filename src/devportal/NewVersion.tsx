@@ -105,13 +105,17 @@ export const NewVersion = () => {
             }
             const res = await getSupabase()
               .from("versions")
-              .insert([newVersion]);
+              .insert([newVersion])
+              .select()
+              .single();
             if (res.error) {
               console.error(res.error);
               toast.error(beautifyPostgrestError(res.error, "version"));
-            } else {
+            } else if (res.data) {
               toast.success("Version created successfully!");
-              navigate("/developers/app/" + app.id);
+              navigate("/developers/app/" + app.id + "/version/" + res.data.id);
+            } else {
+              toast.warning("Created version, but no data returned.");
             }
           }}
         />

@@ -9740,8 +9740,8 @@ const Do = rr([se(), Vt({
               oe.error("You must be logged in to create an app.");
               return;
             }
-            const c = await ae().from("versions").insert([a]);
-            c.error ? (console.error(c.error), oe.error(ze(c.error, "version"))) : (oe.success("Version created successfully!"), n("/developers/app/" + o.id));
+            const c = await ae().from("versions").insert([a]).select().single();
+            c.error ? (console.error(c.error), oe.error(ze(c.error, "version"))) : c.data ? (oe.success("Version created successfully!"), n("/developers/app/" + o.id + "/version/" + c.data.id)) : oe.warning("Created version, but no data returned.");
           }
         }
       )
