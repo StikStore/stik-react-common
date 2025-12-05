@@ -49,6 +49,12 @@ const fields: Field<Omit<DBApp, "id" | "owner">>[] = [
     defaultValue: "other",
     type: "dropdown",
   },
+  {
+    label: "Source URL",
+    id: "source_url",
+    placeholder: "https://github.com/username/repo",
+    type: "text",
+  },
 ];
 
 export const EditAppCard = ({

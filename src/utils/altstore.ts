@@ -100,6 +100,7 @@ export function importAltstoreApp(
     subtitle: altapp.subtitle || null,
     entitlements: altapp.appPermissions?.entitlements || [],
     privacy,
+    source_url: "",
   };
 
   let versions: Omit<Tables<"versions">, "id" | "app_id">[] = [];

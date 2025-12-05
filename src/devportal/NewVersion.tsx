@@ -109,7 +109,7 @@ export const NewVersion = () => {
             if (res.error) {
               console.error(res.error);
               toast.error(beautifyPostgrestError(res.error, "version"));
-            } else if (res.data) {
+            } else {
               toast.success("Version created successfully!");
               navigate("/developers/app/" + app.id);
             }

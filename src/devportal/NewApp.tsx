@@ -22,6 +22,7 @@ const defaultApp: Omit<DBApp, "id" | "owner"> = {
   icon_path: null,
   entitlements: [],
   privacy: [],
+  source_url: "",
 };
 
 export const NewApp = () => {
