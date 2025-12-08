@@ -9888,7 +9888,7 @@ const Do = rr([se(), Vt({
             children: "Submit for Review"
           }
         ),
-        /* @__PURE__ */ Z(
+        a.status === "draft" && /* @__PURE__ */ Z(
           "button",
           {
             className: "danger",

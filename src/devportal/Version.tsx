@@ -213,41 +213,43 @@ export const Version = () => {
             </button>
           )}
 
-          <button
-            className="danger"
-            onClick={async () => {
-              showPrompt({
-                title: "Delete Version",
-                content: `Are you sure you want to delete version ${version.version} (${version.build_version}) from ${app.name}? This action cannot be undone.`,
-                options: [
-                  {
-                    text: "Delete",
-                    className: "danger",
-                    action: async () => {
-                      const res = await getSupabase()
-                        .from("versions")
-                        .delete()
-                        .eq("id", version.id);
+          {version.status === "draft" && (
+            <button
+              className="danger"
+              onClick={async () => {
+                showPrompt({
+                  title: "Delete Version",
+                  content: `Are you sure you want to delete version ${version.version} (${version.build_version}) from ${app.name}? This action cannot be undone.`,
+                  options: [
+                    {
+                      text: "Delete",
+                      className: "danger",
+                      action: async () => {
+                        const res = await getSupabase()
+                          .from("versions")
+                          .delete()
+                          .eq("id", version.id);
 
-                      if (res.error) {
-                        console.error(res.error);
-                        toast.error(
-                          beautifyPostgrestError(res.error, "version")
-                        );
-                      } else {
-                        toast.success("Version deleted successfully");
-                        navigate("/developers/app/" + app.id);
-                        reloadApps();
-                      }
+                        if (res.error) {
+                          console.error(res.error);
+                          toast.error(
+                            beautifyPostgrestError(res.error, "version")
+                          );
+                        } else {
+                          toast.success("Version deleted successfully");
+                          navigate("/developers/app/" + app.id);
+                          reloadApps();
+                        }
+                      },
                     },
-                  },
-                  { text: "Cancel", action: () => {}, className: "" },
-                ],
-              });
-            }}
-          >
-            Delete Version
-          </button>
+                    { text: "Cancel", action: () => {}, className: "" },
+                  ],
+                });
+              }}
+            >
+              Delete Version
+            </button>
+          )}
         </GlassCard>
       </section>
     </div>
