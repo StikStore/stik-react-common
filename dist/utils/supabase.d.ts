@@ -19,6 +19,7 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
                 owner: string;
                 privacy: import('../database.types').Json;
                 review_id: number;
+                source_url: string | null;
                 subtitle: string | null;
             };
             Insert: {
@@ -36,6 +37,7 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
                 owner: string;
                 privacy: import('../database.types').Json;
                 review_id: number;
+                source_url?: string | null;
                 subtitle?: string | null;
             };
             Update: {
@@ -53,6 +55,7 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
                 owner?: string;
                 privacy?: import('../database.types').Json;
                 review_id?: number;
+                source_url?: string | null;
                 subtitle?: string | null;
             };
             Relationships: [{
@@ -89,6 +92,7 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
                 name: string;
                 owner: string;
                 privacy: import('../database.types').Json;
+                source_url: string | null;
                 subtitle: string | null;
             };
             Insert: {
@@ -104,6 +108,7 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
                 name: string;
                 owner: string;
                 privacy: import('../database.types').Json;
+                source_url?: string | null;
                 subtitle?: string | null;
             };
             Update: {
@@ -119,6 +124,7 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
                 name?: string;
                 owner?: string;
                 privacy?: import('../database.types').Json;
+                source_url?: string | null;
                 subtitle?: string | null;
             };
             Relationships: [];
@@ -228,6 +234,12 @@ export declare function getSupabase(): SupabaseClient<Database, "public", "publi
     };
     Views: { [_ in never]: never; };
     Functions: {
+        _reviews_can_insert_with_single_draft: {
+            Args: {
+                version_id_arg: number;
+            };
+            Returns: boolean;
+        };
         json_matches_schema: {
             Args: {
                 instance: import('../database.types').Json;

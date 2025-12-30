@@ -51,6 +51,7 @@ export async function importIPA(
     subtitle: null,
     entitlements: [],
     privacy,
+    source_url: "",
   };
 
   const checksum = sha256(await file.arrayBuffer());

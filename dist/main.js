@@ -669,6 +669,12 @@ const ys = "data:image/svg+xml,%3csvg%20width='98'%20height='96'%20xmlns='http:/
     ],
     defaultValue: "other",
     type: "dropdown"
+  },
+  {
+    label: "Source URL",
+    id: "source_url",
+    placeholder: "https://github.com/username/repo",
+    type: "text"
   }
 ], qo = ({
   app: e,
@@ -6758,7 +6764,8 @@ async function uf(e) {
     iphone_screenshots: [],
     subtitle: null,
     entitlements: [],
-    privacy: s
+    privacy: s,
+    source_url: ""
   }, l = Pa.sha256(await e.arrayBuffer()), u = $a(r, l), h = r.CFBundleIcons, g = h ? h.CFBundlePrimaryIcon : void 0;
   let f = [];
   if (g) {
@@ -6903,7 +6910,8 @@ function hf(e) {
     iphone_screenshots: [],
     subtitle: e.subtitle || null,
     entitlements: e.appPermissions?.entitlements || [],
-    privacy: r
+    privacy: r,
+    source_url: ""
   };
   let n = [];
   for (const i of e.versions)
@@ -9447,7 +9455,8 @@ const Do = rr([se(), Vt({
   created_at: (/* @__PURE__ */ new Date()).toISOString(),
   icon_path: null,
   entitlements: [],
-  privacy: []
+  privacy: [],
+  source_url: ""
 }, J0 = () => {
   const { session: e, createApp: r, reloadApps: t } = Oe(), n = Ye(), i = Pt(null), o = Pt(null), [s, a] = ke(null);
   return /* @__PURE__ */ q("div", { className: "developer-container", children: [
@@ -9731,8 +9740,8 @@ const Do = rr([se(), Vt({
               oe.error("You must be logged in to create an app.");
               return;
             }
-            const c = await ae().from("versions").insert([a]);
-            c.error ? (console.error(c.error), oe.error(ze(c.error, "version"))) : c.data && (oe.success("Version created successfully!"), n("/developers/app/" + o.id));
+            const c = await ae().from("versions").insert([a]).select().single();
+            c.error ? (console.error(c.error), oe.error(ze(c.error, "version"))) : c.data ? (oe.success("Version created successfully!"), n("/developers/app/" + o.id + "/version/" + c.data.id)) : oe.warning("Created version, but no data returned.");
           }
         }
       )
@@ -9880,7 +9889,7 @@ const Do = rr([se(), Vt({
             children: "Submit for Review"
           }
         ),
-        /* @__PURE__ */ Z(
+        a.status === "draft" && /* @__PURE__ */ Z(
           "button",
           {
             className: "danger",
@@ -10396,6 +10405,7 @@ export {
   s_ as AppManagement,
   i_ as AppPermissions,
   a_ as AppScreenshots,
+  nr as AppTitle,
   o_ as AppVersions,
   K0 as Developer,
   X0 as DeveloperProvider,

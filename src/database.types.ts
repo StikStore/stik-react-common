@@ -30,6 +30,7 @@ export type Database = {
           owner: string
           privacy: Json
           review_id: number
+          source_url: string | null
           subtitle: string | null
         }
         Insert: {
@@ -47,6 +48,7 @@ export type Database = {
           owner: string
           privacy: Json
           review_id: number
+          source_url?: string | null
           subtitle?: string | null
         }
         Update: {
@@ -64,6 +66,7 @@ export type Database = {
           owner?: string
           privacy?: Json
           review_id?: number
+          source_url?: string | null
           subtitle?: string | null
         }
         Relationships: [
@@ -104,6 +107,7 @@ export type Database = {
           name: string
           owner: string
           privacy: Json
+          source_url: string | null
           subtitle: string | null
         }
         Insert: {
@@ -119,6 +123,7 @@ export type Database = {
           name: string
           owner: string
           privacy: Json
+          source_url?: string | null
           subtitle?: string | null
         }
         Update: {
@@ -134,6 +139,7 @@ export type Database = {
           name?: string
           owner?: string
           privacy?: Json
+          source_url?: string | null
           subtitle?: string | null
         }
         Relationships: []
@@ -250,6 +256,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      _reviews_can_insert_with_single_draft: {
+        Args: { version_id_arg: number }
+        Returns: boolean
+      }
       json_matches_schema: {
         Args: { instance: Json; schema: Json }
         Returns: boolean
