@@ -1,7 +1,9 @@
 import { default as React, ReactNode } from 'react';
 type PromptOptions = {
     title: string;
+    subtitle?: string;
     content: string;
+    contentIsCode?: boolean;
     options: {
         text: string;
         action: () => any;

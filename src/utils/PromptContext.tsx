@@ -9,7 +9,9 @@ import React, {
 
 type PromptOptions = {
   title: string;
+  subtitle?: string;
   content: string;
+  contentIsCode?: boolean;
   options: { text: string; action: () => any; className: string }[];
 };
 type PromptContextType = {
@@ -40,8 +42,15 @@ export const PromptProvider: React.FC<{ children: ReactNode }> = ({
       {promptOptions && (
         <div className="prompt-modal">
           <GlassCard>
-            <h1>{promptOptions.title}</h1>
-            <p>{promptOptions.content}</p>
+            <h2>{promptOptions.title}</h2>
+            {promptOptions.subtitle && <h4>{promptOptions.subtitle}</h4>}
+            {promptOptions.contentIsCode ? (
+              <pre>
+                <code>{promptOptions.content}</code>
+              </pre>
+            ) : (
+              <p>{promptOptions.content}</p>
+            )}
             <div className="prompt-buttons">
               {promptOptions.options.map((option, index) => (
                 <button

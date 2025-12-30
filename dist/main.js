@@ -9751,8 +9751,9 @@ const Do = rr([se(), Vt({
   return /* @__PURE__ */ q(cs.Provider, { value: { showPrompt: n, hidePrompt: i }, children: [
     e,
     r && /* @__PURE__ */ Z("div", { className: "prompt-modal", children: /* @__PURE__ */ q(Ee, { children: [
-      /* @__PURE__ */ Z("h1", { children: r.title }),
-      /* @__PURE__ */ Z("p", { children: r.content }),
+      /* @__PURE__ */ Z("h2", { children: r.title }),
+      r.subtitle && /* @__PURE__ */ Z("h4", { children: r.subtitle }),
+      r.contentIsCode ? /* @__PURE__ */ Z("pre", { children: /* @__PURE__ */ Z("code", { children: r.content }) }) : /* @__PURE__ */ Z("p", { children: r.content }),
       /* @__PURE__ */ Z("div", { className: "prompt-buttons", children: r.options.map((o, s) => /* @__PURE__ */ Z(
         "button",
         {
