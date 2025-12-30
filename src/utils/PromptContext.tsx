@@ -45,8 +45,8 @@ export const PromptProvider: React.FC<{ children: ReactNode }> = ({
             <h2>{promptOptions.title}</h2>
             {promptOptions.subtitle && <h4>{promptOptions.subtitle}</h4>}
             {promptOptions.contentIsCode ? (
-              <pre>
-                <code>{promptOptions.content}</code>
+              <pre className="operation-extra-details">
+                {promptOptions.content}
               </pre>
             ) : (
               <p>{promptOptions.content}</p>

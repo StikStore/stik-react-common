@@ -20,6 +20,8 @@
 
 .prompt-modal h4 {
   margin-top: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 .prompt-buttons {
@@ -27,4 +29,8 @@
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
+}
+
+.prompt-buttons button {
+  min-width: 100px;
 }
